@@ -6,7 +6,7 @@ var consent = {
     check_fn: function () {
         jsPsych.data.addProperties(
             {
-                sona_id: jsPsych.data.getURLVariable("id"),
+                sona_id: jatos.urlQueryParameters.id,
                 wants_copy: document.getElementById("copy").checked,
             }
         );
