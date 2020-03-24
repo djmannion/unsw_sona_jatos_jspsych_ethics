@@ -45,6 +45,8 @@ jatos.onLoad(
         var redirect_url = null;
 
         if (sona_id) {
+            // if we have a Sona ID, then use it to form the URL that the
+            // participant needs to load in order to get credit
             redirect_url = finish_url_base + sona_id;
         }
         else {
@@ -65,6 +67,8 @@ jatos.onLoad(
                         .done(jatos.endStudyAjax)
                         .done(
                             () => {
+                                // once we're all done, redirect them to Sona
+                                // to receive their credit
                                 window.location.href = redirect_url;
                             }
                         );
