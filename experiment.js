@@ -1,16 +1,4 @@
 
-// replace this with your study information
-var finish_url_base = "https://unsw-psy.sona-systems.com/webstudy_credit.aspx?experiment_id=...&survey_code=";
-
-var subj_id = jsPsych.data.getURLVariable("id");
-
-if (subj_id) {
-    var redirect_url = finish_url_base + subj_id;
-}
-else {
-    var redirect_url = "https://unsw-psy.sona-systems.com";
-}
-
 var consent = {
     type: "external-html",
     url: "consent.html",
@@ -18,7 +6,7 @@ var consent = {
     check_fn: function () {
         jsPsych.data.addProperties(
             {
-                subj_id: subj_id,
+                sona_id: jsPsych.data.getURLVariable("id"),
                 wants_copy: document.getElementById("copy").checked,
             }
         );
@@ -34,6 +22,18 @@ var debrief = {
 
 jatos.onLoad(
     function () {
+
+        var finish_url_base = jatos.studyJsonInput.finish_url_base;
+
+        var sona_id = jatos.urlQueryParameters.id;
+
+        if (sona_id) {
+            var redirect_url = finish_url_base + sona_id;
+        }
+        else {
+            var redirect_url = "https://unsw-psy.sona-systems.com";
+        }
+
         jsPsych.init(
             {
                 timeline: [
