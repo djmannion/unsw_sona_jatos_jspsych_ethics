@@ -4,12 +4,8 @@ var consent = {
     url: "consent.html",
     cont_btn: "consented",
     check_fn: function () {
-        // this is called after the button is clicked
-        // take the opportunity to add the ID information to the jsPsych data
-        // also flag whether the participant wants to know the results
         jsPsych.data.addProperties(
             {
-                sona_id: jatos.urlQueryParameters.id,
                 wants_copy: document.getElementById("copy").checked,
             }
         );
@@ -38,6 +34,13 @@ jatos.onLoad(
         // also important to note that this info is not available until within
         // the `jatos.onLoad` function
         var sona_id = jatos.urlQueryParameters.id;
+
+        // ID is undefined if not coming from Sona
+        if (sona_id === undefined) {
+            sona_id = null;
+        }
+
+        jsPsych.data.addProperties({sona_id: sona_id});
 
         var redirect_url = null;
 
