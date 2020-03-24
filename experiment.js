@@ -27,11 +27,13 @@ jatos.onLoad(
 
         var sona_id = jatos.urlQueryParameters.id;
 
+        var redirect_url = null;
+
         if (sona_id) {
-            var redirect_url = finish_url_base + sona_id;
+            redirect_url = finish_url_base + sona_id;
         }
         else {
-            var redirect_url = "https://unsw-psy.sona-systems.com";
+            redirect_url = "https://unsw-psy.sona-systems.com";
         }
 
         jsPsych.init(
